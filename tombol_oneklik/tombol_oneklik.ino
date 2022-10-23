@@ -22,5 +22,5 @@ void loop() {
   else{
     pernahstart=0;
   }
-  if(start) serial.println("Start");
+  if(start) Serial.println("Start");
 }
