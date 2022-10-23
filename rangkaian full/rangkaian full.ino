@@ -26,14 +26,20 @@ void loop(){
     }
     else{
       pernahstart=1;
-
-      else if(square)
+    else if(square)
        else if(pos + 3 <= 180) pos += 3;
     }
     else if(down){
       else if (pos + 3 >= 90) pos += 3 ;
       if(circle)
         else if(pos - 3 >= 0) pos -= 3;
+      bool start=GamePad.isStartPressed();
+       else if(start){
+       else if(pernahstart){
+      start=0;
+    }
+    else{
+      pernahstart=1;
       else if(square)
         else if(pos + 3 <= 180) pos += 3;
       }
