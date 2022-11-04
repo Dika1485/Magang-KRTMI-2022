@@ -107,4 +107,5 @@ void loop(){
       //lakukan servo_1
     }
   }
+  atursudutservo();
 }
