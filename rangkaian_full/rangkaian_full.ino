@@ -1,0 +1,110 @@
+#define CUSTOM_SETTINGS
+#define INCLUDE_GAMEPAD_MODULE
+#include <Dabble.h>
+#include <Servo.h>
+
+int pinservo[5] = {};//tanya elektronik di pin apa aja
+int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa
+bool up=0,down=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
+Servo servo[5];
+
+void setup(){
+  Serial.begin(9600);
+  Dabble.begin(9600);
+  atursudutservo();
+}
+
+void atursudutservo(){
+  for(int i=0;i<5;i++){
+    servo[i].attach(pos[i]);
+  }
+}
+
+void tombol(){
+  Dabble.processInput();
+  Serial.print("KeyPressed: ");
+  up=GamePad.isUpPressed();
+  down=GamePad.isDownPressed();
+  left=GamePad.isLeftPressed();
+  right=GamePad.isRightPressed();
+  square=GamePad.isSquarePressed();
+  circle=GamePad.isCirclePressed();
+  cross=GamePad.isCrossPressed();
+  triangle=GamePad.isTrianglePressed();
+  start=GamePad.isStartPressed();
+  select=GamePad.isSelectPressed();
+  if (start) {
+    if (pernahstart) {
+      start = 0;
+    }
+    else {
+      pernahstart = 1;
+    }
+  }
+  else {
+    pernahstart = 0;
+  }
+  
+  if(up){
+    Serial.print("UP ");
+  }
+  if(down){
+    Serial.print("DOWN ");
+  }
+  if(left){
+    Serial.print("Left ");
+  }
+  if(right){
+    Serial.print("Right ");
+  }
+  if(square){
+    Serial.print("Square ");
+  }
+  if(circle){
+    Serial.print("Circle ");
+  }
+  if(cross){
+    Serial.print("Cross ");
+  }
+  if(triangle){
+    Serial.print("Triangle ");
+  }
+  if(start){
+    Serial.print("Start ");
+  }
+  if(select){
+    Serial.print("Select ");
+  }
+  Serial.print('\t');
+
+}
+
+void pauseorstart(){
+  if (start){
+    if (go) {
+      go = 0;
+    }
+    else {
+      go = 1;
+    }
+  }
+}
+void loop(){
+  delay(20);
+  tombol();
+  pauseorstart();
+  if(go){
+    if(square){
+      //lakukan servo one click
+    }
+    if(circle){
+      //lakukan servo_1
+    }
+    if(triangle){
+      //lakukan servo_1
+    }
+    if(cross){
+      //lakukan servo_1
+    }
+  }
+}
