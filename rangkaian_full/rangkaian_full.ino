@@ -4,7 +4,7 @@
 #include <Servo.h>
 
 int pinservo[5] = {};//tanya elektronik di pin apa aja
-int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa
+int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
 bool up=0,down=0,left=0,right=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
 Servo servo[5];
 
@@ -33,6 +33,7 @@ void tombol(){
   triangle=GamePad.isTrianglePressed();
   start=GamePad.isStartPressed();
   select=GamePad.isSelectPressed();
+  
   if (start) {
     if (pernahstart) {
       start = 0;
@@ -43,6 +44,18 @@ void tombol(){
   }
   else {
     pernahstart = 0;
+  }
+  
+  if (squar) {
+    if (pernahsquar) {
+      squar = 0;
+    }
+    else {
+      pernahsquar = 1;
+    }
+  }
+  else {
+    pernahsquar = 0;
   }
   
   if(up){
@@ -86,6 +99,19 @@ void pauseorstart(){
     }
     else {
       go = 1;
+    }
+  }
+}
+
+void capitorno(){
+  if(squar){
+    if(capit){
+      capit=0;
+      pos[0]=;//isikan sudut membuka capit
+    }
+    else{
+      capit=1;
+      pos[0]=;//isikan sudut mencapit
     }
   }
 }
