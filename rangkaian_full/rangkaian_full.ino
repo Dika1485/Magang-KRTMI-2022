@@ -5,7 +5,7 @@
 
 int pinservo[5] = {};//tanya elektronik di pin apa aja
 int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa
-bool up=0,down=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
+bool up=0,down=0,left=0,right=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
 Servo servo[5];
 
 void setup(){
@@ -27,7 +27,7 @@ void tombol(){
   down=GamePad.isDownPressed();
   left=GamePad.isLeftPressed();
   right=GamePad.isRightPressed();
-  square=GamePad.isSquarePressed();
+  squar=GamePad.isSquarePressed();
   circle=GamePad.isCirclePressed();
   cross=GamePad.isCrossPressed();
   triangle=GamePad.isTrianglePressed();
@@ -94,7 +94,7 @@ void loop(){
   tombol();
   pauseorstart();
   if(go){
-    if(square){
+    if(squar){
       //lakukan servo one click
     }
     if(circle){
