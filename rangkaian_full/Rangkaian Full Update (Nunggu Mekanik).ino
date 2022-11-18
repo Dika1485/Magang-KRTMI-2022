@@ -134,34 +134,29 @@ void loop(){
       //lakukan servo one click
     }
     if(circle){
-        if(GamePad.isUpPressed()){
-         Serial.print("UP ");
+        if("UP"){
          if(pos + 3 <= 90) pos += 3;
          }
-        if(GamePad.isDownPressed()){
-         Serial.print("DOWN ");
+        if("DOWN"){
          if(pos - 3 >= 0) pos -= 3;
          }//lakukan servo_1
     }
     if(triangle){
-        if(GamePad.isUpPressed()){
-         Serial.print("UP ");
+        if("UP"){
          if(pos + 3 <= 90) pos += 3;
          }
-        if(GamePad.isDownPressed()){
-         Serial.print("DOWN ");
+        if("DOWN"){
          if(pos - 3 >= 0) pos -= 3;
-         } //lakukan servo_1
+         } 
+      }//lakukan servo_1
     }
     if(cross){
-        if(GamePad.isLeftPressed()){
-            Serial.print("LEFT");
-        if(pos + 3 <= 180) pos += 3;
-        }
-        if(GamePad.isRightPressed()){
-           Serial.print("RIGHT");
-           if(pos - 3 >= 0) pos -= 3;
-            }
+        if("left"){
+         if(pos + 3 <= 180) pos += 3;
+          }
+        if("Right"){
+          if(pos - 3 >= 0) pos -= 3;
+           }
         }//lakukan servo_1
     }
   }
