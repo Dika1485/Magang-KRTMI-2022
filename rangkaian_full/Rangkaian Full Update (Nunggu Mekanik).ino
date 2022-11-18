@@ -120,33 +120,49 @@ void loop(){
   tombol();
   pauseorstart();
   if(go){
-    if(squar){
+  if(squar){
+      if (start) {
+        if (capit) {
+           Servo = 0;
+           capit = 0;
+          } 
+         else {
+          Servo = 90;
+          capit = 1;
+         }
+  } 
       //lakukan servo one click
     }
     if(circle){
-        if(up){
+        if(GamePad.isUpPressed()){
          Serial.print("UP ");
+         if(pos + 3 <= 90) pos += 3;
          }
-        if(down){
+        if(GamePad.isDownPressed()){
          Serial.print("DOWN ");
+         if(pos - 3 >= 0) pos -= 3;
          }//lakukan servo_1
     }
     if(triangle){
-        if(up){
+        if(GamePad.isUpPressed()){
          Serial.print("UP ");
+         if(pos + 3 <= 90) pos += 3;
          }
-        if(down){
+        if(GamePad.isDownPressed()){
          Serial.print("DOWN ");
+         if(pos - 3 >= 0) pos -= 3;
          } //lakukan servo_1
     }
     if(cross){
-       if(left){
-        Serial.print("Left ");
+        if(GamePad.isLeftPressed()){
+            Serial.print("LEFT");
+        if(pos + 3 <= 180) pos += 3;
         }
-      if(right){
-       Serial.print("Right ");
-        }
-       //lakukan servo_1
+        if(GamePad.isRightPressed()){
+           Serial.print("RIGHT");
+           if(pos - 3 >= 0) pos -= 3;
+            }
+        }//lakukan servo_1
     }
   }
   atursudutservo();
