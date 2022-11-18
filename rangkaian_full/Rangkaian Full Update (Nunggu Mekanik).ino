@@ -124,13 +124,29 @@ void loop(){
       //lakukan servo one click
     }
     if(circle){
-      //lakukan servo_1
+        if(up){
+         Serial.print("UP ");
+         }
+        if(down){
+         Serial.print("DOWN ");
+         }//lakukan servo_1
     }
     if(triangle){
-      //lakukan servo_1
+        if(up){
+         Serial.print("UP ");
+         }
+        if(down){
+         Serial.print("DOWN ");
+         } //lakukan servo_1
     }
     if(cross){
-      //lakukan servo_1
+       if(left){
+        Serial.print("Left ");
+        }
+      if(right){
+       Serial.print("Right ");
+        }
+       //lakukan servo_1
     }
   }
   atursudutservo();
