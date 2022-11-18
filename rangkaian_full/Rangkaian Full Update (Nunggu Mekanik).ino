@@ -3,20 +3,27 @@
 #include <Dabble.h>
 #include <Servo.h>
 
-int pinservo[4] = {1,2,3,4};//tanya elektronik di pin apa aja
+int pinservo[4] = {2,3,4,5};//pin servo
 int pos[4] = {90,90,90,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
-bool up=0,down=0,left=0,right=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
+bool up=0,down=0,left=0,right=0,squar=0,circle=0,cross=0,triangle=0,start=0,select=0;//deklarasi variable yang ada di prosedur tombol dan pauseorstart
 Servo servo[5];
 
 void setup(){
   Serial.begin(9600);
   Dabble.begin(9600);
+  setpinservo();
   atursudutservo();
+}
+
+void setpinservo(){
+  for(int i=0;i<5;i++){
+    servo[i].attach(pos[i]);
+  }
 }
 
 void atursudutservo(){
   for(int i=0;i<5;i++){
-    servo[i].attach(pos[i]);
+    servo[i].write(pos[i]);
   }
 }
 
