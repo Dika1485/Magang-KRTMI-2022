@@ -3,8 +3,8 @@
 #include <Dabble.h>
 #include <Servo.h>
 
-int pinservo[5] = {1,2,3,4,5};//tanya elektronik di pin apa aja
-int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
+int pinservo[4] = {1,2,3,4};//tanya elektronik di pin apa aja
+int pos[4] = {90,90,90,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
 bool up=0,down=0,left=0,right=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
 Servo servo[5];
 
@@ -134,27 +134,27 @@ void loop(){
       //lakukan servo one click
     }
     if(circle){
-        if("UP"){
+        if(up){
          if(pos + 3 <= 90) pos += 3;
          }
-        if("DOWN"){
+        if(down){
          if(pos - 3 >= 0) pos -= 3;
          }//lakukan servo_1
     }
     if(triangle){
-        if("UP"){
+        if(up){
          if(pos + 3 <= 90) pos += 3;
          }
-        if("DOWN"){
+        if(down){
          if(pos - 3 >= 0) pos -= 3;
          } 
       }//lakukan servo_1
     }
     if(cross){
-        if("left"){
+        if(left){
          if(pos + 3 <= 180) pos += 3;
           }
-        if("Right"){
+        if(right){
           if(pos - 3 >= 0) pos -= 3;
            }
         }//lakukan servo_1
