@@ -3,20 +3,29 @@
 #include <Dabble.h>
 #include <Servo.h>
 
-int pinservo[5] = {};//tanya elektronik di pin apa aja
-int pos[5] = {90,90,90,90,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
-bool up=0,down=0,left=0,right=0;//teruskan deklarasi variable yang ada di prosedur tombol dan pauseorstart dengan nilai 0
-Servo servo[5];
+int pinservo[4] = {2,3,4,5};//pin servo
+int pos[4] = {100,180,180,90};//koordinasi dengan mekanik sudutnya berapa, pos[0] untuk servo capit
+bool up=0,down=0,left=0,right=0,squar=0,circle=0,cross=0,triangle=0,start=0,select=0,pernahstart=0,pernahtriangle=0,go=0,capit=1;//deklarasi variable yang ada di prosedur tombol dan pauseorstart
+Servo servo[4];
 
 void setup(){
   Serial.begin(9600);
   Dabble.begin(9600);
+  setpinservo();
   atursudutservo();
 }
 
+void setpinservo(){
+  for(int i=0;i<4;i++){
+    servo[i].attach(pinservo[i]);
+  }
+}
+
 void atursudutservo(){
-  for(int i=0;i<5;i++){
-    servo[i].attach(pos[i]);
+  for(int i=0;i<4;i++){
+    servo[i].write(pos[i]);
+    Serial.print(pos[i]);
+    Serial.print(" ");
   }
 }
 
@@ -46,16 +55,16 @@ void tombol(){
     pernahstart = 0;
   }
   
-  if (squar) {
-    if (pernahsquar) {
-      squar = 0;
+  if (triangle) {
+    if (pernahtriangle) {
+      triangle = 0;
     }
     else {
-      pernahsquar = 1;
+      pernahtriangle = 1;
     }
   }
   else {
-    pernahsquar = 0;
+    pernahtriangle = 0;
   }
   
   if(up){
@@ -70,7 +79,7 @@ void tombol(){
   if(right){
     Serial.print("Right ");
   }
-  if(square){
+  if(squar){
     Serial.print("Square ");
   }
   if(circle){
@@ -88,7 +97,7 @@ void tombol(){
   if(select){
     Serial.print("Select ");
   }
-  Serial.print('\t');
+  Serial.print('\n');
 
 }
 
@@ -104,14 +113,14 @@ void pauseorstart(){
 }
 
 void capitorno(){
-  if(squar){
+  if(triangle){
     if(capit){
       capit=0;
-      pos[0]=;//isikan sudut membuka capit
+      pos[0]=50;//isikan sudut membuka capit
     }
     else{
       capit=1;
-      pos[0]=;//isikan sudut mencapit
+      pos[0]=100;//isikan sudut mencapit
     }
   }
 }
@@ -120,18 +129,34 @@ void loop(){
   tombol();
   pauseorstart();
   if(go){
-    if(squar){
-      //lakukan servo one click
+    if(triangle){
+      capitorno();
+      //servo one click capit
     }
     if(circle){
-      //lakukan servo_1
+      if(up){
+        if(pos[2] + 3 <= 180) pos[2] += 3;
+      }
+      if(down){
+        if(pos[2] - 3 >= 0) pos[2] -= 3; 
+      }//servo lengan kanan
     }
-    if(triangle){
-      //lakukan servo_1
+    if(squar){
+      if(up){
+        if(pos[1] - 3 >= 0) pos[1] -= 3;
+      }
+      if(down){
+        if(pos[1] + 3 <= 180) pos[1] += 3;
+      }//servo lengan kiri
     }
     if(cross){
-      //lakukan servo_1
-    }
+      if(left){
+        if(pos[3] + 3 <= 180) pos[3] += 3;
+      }
+      if(right){
+        if(pos[3] - 3 >= 0) pos[3] -= 3;
+      }
+    }//servo bawah
   }
   atursudutservo();
 }
